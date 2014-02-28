@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/easypep/gulp-eco"
+    "url": "git://github.com/easyPEP/gulp-eco"
   },
   "author": {
     "name": "Kalle Saas",
@@ -23,6 +23,7 @@
   ],
   "keywords": [
     "gulpplugin",
+    "gulpfriendly",
     "eco",
     "transform",
     "transformer",
