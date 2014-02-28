@@ -1,13 +1,13 @@
-# [gulp](https://github.com/wearefractal/gulp)-ect
+# [gulp](https://github.com/wearefractal/gulp)-eco
 
-> Gulp plugin to compile ect.js template engine
+> Gulp plugin to compile eco.js template engine
 
 ## Install
 
-Install with [npm](https://npmjs.org/package/gulp-mocha)
+Install with [npm](https://www.npmjs.org)
 
 ```
-npm install --save-dev gulp-ect
+npm install --save-dev gulp-eco
 ```
 
 
@@ -16,66 +16,47 @@ npm install --save-dev gulp-ect
 js
 ```js
 var gulp = require('gulp');
-var ect = require('ect');
+var eco = require('gulp-eco');
 
-gulp.task('ect', function(){
-  gulp.src('./src/*.ect')
-      .pipe(ect())
-      .pipe(gulp.dest('./out'));
+gulp.task('eco', function () {
+  return gulp.src(paths.templates)
+    .pipe(eco({basePath: 'frontend/javascripts'}))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('default', ['ect']);
+gulp.task('default', ['eco']);
 ```
 
-coffee
-```coffee
-ect = require('ect')
-gulp.task 'ect', ->
-  gulp
-    .src('./src/*.ect')
-    .pipe(ect())
-    .pipe gulp.dest('./out')
-
-gulp.task 'default', ['ect']
-```
 
 ## API
 
-### ect(options)
+### eco(options)
 
 
-#### options.ext
+#### options.basePath
 
-Type: `String`  
-Default: `.ect`  
+Type: `String`
+Default: ``
 
-The extensions input files.
+eco compiles evry template file into a function, which you can call with:
 
+```js
+windowJST["template_name"]({name: 'Manfred'})
+```
 
-#### options.outExt
+The ```template_name``` depends is the absolute path to the file. E.g.
 
-Type: `String`  
-Default: `.html`  
+```js
+/var/www/app/templates/users/users.jst.eco
+```
 
-The extensions output files.
+By passing basePath: 'app/templates' you can strip the ```template_name``` to
 
-#### options.data
-
-Type: `Function or Object`  
-Default: `{}`  
-
-The template context data. 
-
-If a function is passed, use the format function(fileName,callback) and fire callback as callback(data):
-
-~~~js
-  gulp.src(['./src/*.ect', './src/inner/*.ect'])
-    .pipe(ect({data: function (filename, cb) {
-      cb({foo: "bar"});
-    }}))
-    .pipe(gulp.dest('./out'));
-~~~
+```js
+users/users.jst
+```
 
 ## License
 
-MIT © Vladislav Derjavin <dev@vld.me>
+MIT © Kalle Saas <kalle@easypep.de>
