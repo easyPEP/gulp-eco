@@ -7,6 +7,7 @@ module.exports = function (opt) {
 
   opt = opt || {};
   if (!opt.basePath) opt.basePath = '';
+  if (!opt.namespace) opt.namespace = 'JST';
 
   return through.obj(function (file, encoding, callback) {
     if (file.isNull()) {
@@ -20,8 +21,8 @@ module.exports = function (opt) {
 
     var str = file.contents.toString();
     output = eco.compile(str);
-    output = 'window.JST["' + JSTpath + '"] = ' + output + '\n';
-    output = "if (!window.JST) {\n  window.JST = {};\n}\n" + output;
+    output = 'window.' + opt.namespace + '["' + JSTpath + '"] = ' + output + '\n';
+    output = "if (!window." + opt.namespace + ") {\n  window." + opt.namespace + " = {};\n}\n" + output;
 
     try {
       file.contents = new Buffer(output);
