@@ -33,6 +33,22 @@ gulp.task('default', ['eco']);
 
 ### eco(options)
 
+#### options.namespace
+
+Type: `String`
+Default: `JST`
+
+define your own namespace to access the templates:
+
+```js
+eco({namespace: 'ECO'})
+```
+
+access templates via:
+
+```js
+window.ECO["template_name"]({name: 'Manfred'})
+```
 
 #### options.basePath
 
