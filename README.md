@@ -55,21 +55,21 @@ window.ECO["template_name"]({name: 'Manfred'})
 Type: `String`
 Default: ``
 
-eco compiles evry template file into a function, which you can call with:
+eco compiles every template file into a function, which you can call with:
 
 ```js
-windowJST["template_name"]({name: 'Manfred'})
+window.JST["template_name"]({name: 'Manfred'})
 ```
 
 The ```template_name``` depends is the absolute path to the file. E.g.
 
-```js
+```
 /var/www/app/templates/users/users.jst.eco
 ```
 
-By passing basePath: 'app/templates' you can strip the ```template_name``` to
+By passing `basePath: 'app/templates'` you can strip the ```template_name``` to
 
-```js
+```
 users/users.jst
 ```
 
