@@ -20,7 +20,7 @@ module.exports = function (opt) {
     JSTpath = JSTpath.replace(re, '');
 
     var str = file.contents.toString();
-    output = eco.compile(str);
+    output = eco.compile(str) + ';';
     output = 'window.' + opt.namespace + '["' + JSTpath + '"] = ' + output + '\n';
     output = "if (!window." + opt.namespace + ") {\n  window." + opt.namespace + " = {};\n}\n" + output;
 
