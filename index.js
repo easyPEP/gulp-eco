@@ -16,6 +16,7 @@ module.exports = function (opt) {
     }
 
     JSTpath = path.dirname(file.path) + '/' + path.basename(file.path, '.eco');
+    JSTpath = JSTpath.replace(/\\/g, '/'); // replace backslash to a slash for windows, fix screening
     var re = new RegExp('.*\/' + opt.basePath + '\/?');  // match basePath + optional path separator
     JSTpath = JSTpath.replace(re, '');
 
